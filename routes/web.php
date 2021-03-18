@@ -25,3 +25,8 @@ Route::name('line_item.')
         Route::post('/line_item/create', 'LineItemController@create')->name('create');
     });
 
+Route::name('cart.')
+    ->group(function () {
+        Route::get('/cart', 'CartController@index')->name('index');
+    });
+
