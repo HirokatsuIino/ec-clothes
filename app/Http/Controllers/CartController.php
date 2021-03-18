@@ -23,4 +23,36 @@ class CartController extends Controller
             ->with('line_items', $cart->products)
             ->with('total_price', $total_price);
     }
+
+    public function checkout()
+    {
+        $cart_id = Session::get('cart');
+        $cart = Cart::find($cart_id);
+
+        $line_items = [];
+        foreach ($cart->products as $product) {
+            $line_item = [
+                'name'        => $product->name,
+                'description' => $product->description,
+                'amount'      => $product->price,
+                'currency'    => 'jpy',
+                'quantity'    => $product->pivot->quantity,
+            ];
+            array_push($line_items, $line_item);
+        }
+
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items'           => [$line_items],
+            'success_url'          => route('product.index'),
+            'cancel_url'           => route('cart.index'),
+        ]);
+
+        return view('cart.checkout', [
+            'session' => $session,
+            'publicKey' => env('STRIPE_PUBLIC_KEY')
+        ]);
+    }
 }
