@@ -33,3 +33,11 @@ Route::name('cart.')
         Route::get('/cart/success', 'CartController@success')->name('success');
     });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
