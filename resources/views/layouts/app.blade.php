@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -49,6 +50,7 @@
                                 </li>
                             @endif
                         @else
+                            <a class="navbar navbar-light bg-light fas fa-shopping-cart" href="{{ route('cart.index') }}"></a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -67,6 +69,8 @@
                                 </div>
                             </li>
                         @endguest
+                        <!-- 暫定 -->
+                        <a class="navbar navbar-light bg-light fas fa-shopping-cart" href="{{ route('cart.index') }}"></a>
                     </ul>
                 </div>
             </div>
