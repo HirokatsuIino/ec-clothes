@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\CartHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Cart;
 use App\LineItem;
+
+// Mailファサードをインポート.
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -62,11 +66,73 @@ class CartController extends Controller
             'publicKey' => env('STRIPE_PUBLIC_KEY')
         ]);
     }
+    public function show_history()
+    {
 
-    public function success()
+        $list = LineItem::leftJoin('products', 'line_items.product_id', '=', 'products.id')
+            ->select('line_items.*', 'line_items.created_at as order_day', 'products.*')
+            ->get();
+
+
+//        $list = LineItem::where('cart_id', $cart_id);
+//        $list = LineItem::all();
+//        dd($list);
+        return view("cart.show_history", ["lists" => $list]);
+
+    }
+
+    public function success(Request $request)
     {
         $cart_id = Session::get('cart');
-        LineItem::where('cart_id', $cart_id)->delete();
+//        dd($cart_id, $request->product_id);
+
+//        $cart_id = 1;
+//        $list = CartHistory::find($cart_id);
+//
+//        dd($cart_id, $list);
+
+
+//        $carthistory = CartHistory::find($cart_id);
+//        dd($carthistory);
+//        $carthistory->status = '1';
+//        $carthistory->save();
+//        $item =LineItem::select('id')->where('cart_id', $cart_id)->get();
+//        dd($item);
+
+//        $list = CartHistory::where('cart_id', $cart_id)->get();
+//        foreach ($list as $db_test) {
+//            $db_test->status = 1;
+//            $db_test->save();
+////            dd('end');
+//        }
+
+//        LineItem::where('cart_id', $cart_id)->delete();
+        $list = LineItem::where('cart_id', $cart_id)->get();
+        foreach ($list as $db_test) {
+            $db_test->status = 1;
+            $db_test->save();
+//            dd('end');
+        }
+
+        //        $list->save();
+//        dd($list);
+
+
+        // Mail::sendで送信できる.
+        // 第1引数に、テンプレートファイルのパスを指定し、
+        // 第2引数に、テンプレートファイルで使うデータを指定する
+//        Mail::send('emails.user_register', [
+//            "message" => "こんにちは！"
+//
+//        ], function($message) {
+//
+//            // 第3引数にはコールバック関数を指定し、
+//            // その中で、送信先やタイトルの指定を行う.
+//            $message
+//                ->to('product01boost@gmail.com')
+//                ->bcc('admin@sample.com')
+//                ->subject("ご購入ありがとうございます");
+//        });
 
         return redirect(route('product.index'));
     }
