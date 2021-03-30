@@ -31,6 +31,7 @@ Route::name('cart.')
         Route::get('/cart', 'CartController@index')->name('index');
         Route::get('/cart/checkout', 'CartController@checkout')->name('checkout');
         Route::get('/cart/success', 'CartController@success')->name('success');
+        Route::get('/cart/show_history/', 'CartController@show_history')->name('show_history');
     });
 
 

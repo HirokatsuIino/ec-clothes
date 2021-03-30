@@ -55,6 +55,7 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
+                                <a class="navbar navbar-light bg-light fas fa-shopping-cart" href="{{ route('cart.show_history') }}">購入履歴</a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -71,6 +72,7 @@
                         @endguest
                         <!-- 暫定 -->
                         <a class="navbar navbar-light bg-light fas fa-shopping-cart" href="{{ route('cart.index') }}"></a>
+                        <a class="navbar navbar-light bg-light" href="{{ route('cart.show_history') }}">購入履歴</a>
                     </ul>
                 </div>
             </div>
