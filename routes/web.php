@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
     //ログアウト実行
     Route::post('/admin/logout', 'admin\AdminLogoutController@logout');
     //ユーザー一覧
-//    Route::get('/admin/user_list', 'admin\ManageUserController@showUserList');
+    Route::get('/admin/user_list', 'admin\ManageUserController@showUserList');
     //ユーザー詳細
 //    Route::get('/admin/user/{id}', 'admin\ManageUserController@showUserDetail');
 
