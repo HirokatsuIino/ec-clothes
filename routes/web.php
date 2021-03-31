@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
     //ユーザー一覧
     Route::get('/admin/user_list', 'admin\ManageUserController@showUserList');
     //ユーザー詳細
-//    Route::get('/admin/user/{id}', 'admin\ManageUserController@showUserDetail');
+    Route::get('/admin/user/{id}', 'admin\ManageUserController@showUserDetail');
 
 });
 
