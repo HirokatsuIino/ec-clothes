@@ -18,6 +18,7 @@ class CreateLineItemsTable extends Migration
             $table->unsignedBigInteger('cart_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity');
+            $table->integer('status');
             $table->timestamps();
 
             $table->foreign('cart_id')
