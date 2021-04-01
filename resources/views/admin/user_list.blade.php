@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+    <a href="{{ url('admin/add') }}">新規登録</a>
     <div class="container">
         <div class="card">
             <div class="card-header">ユーザー一覧</div>
@@ -12,6 +13,7 @@
                             <a href="{{ url('admin/user/' . $user->id) }}">
                                 {{ $user->name }}
                             </a>
+                            {{ $user->created_at }}
                         </li>
                     @endforeach
                 </ul>

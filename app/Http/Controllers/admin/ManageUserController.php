@@ -44,7 +44,7 @@ class ManageUserController extends Controller
         $user->email = $request->email;
         $user->password = $request->password;
         $user->save();
-        return redirect('/');
+        return redirect('/admin');
     }
 
 
