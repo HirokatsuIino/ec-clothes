@@ -5,7 +5,7 @@
         <a class="navbar-brand" href="{{ url('admin') }}">
             管理ページ
         </a>
-        <form method="post" action="{{ url('admin/login') }}">
+        <form method="post" action="{{ url('admin/logout') }}">
             @csrf
             <input type="submit" class="btn btn-danger" value="ログアウト" />
         </form>

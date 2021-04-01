@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
     //管理側トップ
     Route::get('/admin', 'admin\AdminTopController@show')->name('admintop');
     //ログアウト実行
-    Route::post('/admin/logout', 'admin\AdminLogoutController@logout');
+    Route::post('/admin/logout', 'admin\AdminLogoutController@logout')->name('adminlogout');
     //ユーザー一覧
     Route::get('/admin/user_list', 'admin\ManageUserController@showUserList');
     //ユーザー詳細
