@@ -47,7 +47,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth.admin']], function () {
 
     //管理側トップ
-    Route::get('/admin', 'admin\AdminTopController@show');
+    Route::get('/admin', 'admin\AdminTopController@show')->name('admintop');
     //ログアウト実行
     Route::post('/admin/logout', 'admin\AdminLogoutController@logout');
     //ユーザー一覧
@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth.admin']], function () {
     //ユーザー詳細
     Route::get('/admin/user/{id}', 'admin\ManageUserController@showUserDetail');
 
+    Route::get('/admin/add', 'admin\ManageUserController@add')->name('user_add');
+    Route::post('/admin/add', 'admin\ManageUserController@create')->name('user_create');
 });
 
 //管理側ログイン
