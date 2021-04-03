@@ -17,9 +17,9 @@ class ManageUserController extends Controller
         if (!empty($keyword)) {
             $query->where('name', 'LIKE', "%{$keyword}%");
         }else{
-            $query->orderBy("id", "desc")->paginate(10);
+            $query->orderBy("id", "desc");
         }
-        $user_list = $query->get();
+        $user_list = $query->paginate(10);
 
         return view("admin.user_list", [
             "user_list" => $user_list,

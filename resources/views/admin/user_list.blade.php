@@ -37,9 +37,9 @@
                     <p>見つかりませんでした。</p>
                 @endif
 
-{{--                <div class="mt-3">--}}
-{{--                    {{ $user_list->links() }}--}}
-{{--                </div>--}}
+                <div class="mt-3">
+                    {{ $user_list->links() }}
+                </div>
 
             </div>
         </div>
