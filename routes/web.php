@@ -68,6 +68,8 @@ Route::group(['middleware' => ['auth.admin']], function () {
     //管理者詳細
     Route::get('/admin/admin_detail/{id}', 'admin\ManageAdminController@showAdminDetail');
 
+    //商品一覧
+    Route::get('/admin/product_list', 'admin\ManageProductController@showProductList');
 });
 
 //管理側ログイン

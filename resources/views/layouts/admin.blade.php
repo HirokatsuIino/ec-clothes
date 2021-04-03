@@ -5,6 +5,9 @@
         <a class="navbar-brand" href="{{ url('admin') }}">
             管理ページ
         </a>
+        <a class="navbar-brand" href="{{ url('admin/product_list') }}">
+            商品一覧
+        </a>
         <a class="navbar-brand" href="{{ url('admin/admin_list') }}">
             管理者一覧
         </a>
