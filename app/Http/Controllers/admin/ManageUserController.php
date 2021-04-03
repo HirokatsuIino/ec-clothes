@@ -9,14 +9,21 @@ use App\User;
 class ManageUserController extends Controller
 {
     //
-    public function showUserList(){
-        $user_list = User::orderBy("id", "desc")->paginate(10);
-//        $user_count = User::COUNT();
+    public function showUserList(Request $request){
 
-//        dd($user_count);
+        $keyword = $request->input('keyword');
+        $query = User::query();
+
+        if (!empty($keyword)) {
+            $query->where('name', 'LIKE', "%{$keyword}%");
+        }else{
+            $query->orderBy("id", "desc")->paginate(10);
+        }
+        $user_list = $query->get();
+
         return view("admin.user_list", [
             "user_list" => $user_list,
-//            "user_count" => $user_count
+            "keyword" => $keyword,
         ]);
     }
     public function showUserDetail($id){
