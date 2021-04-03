@@ -9,7 +9,7 @@
                 <ul class="list-group">
                     @foreach ($admin_list as $admin)
                         <li class="list-group-item">
-                            <a href="{{ url('admin/admin_list/' . $admin->id) }}">
+                            <a href="{{ url('admin/admin_detail/' . $admin->id) }}">
                                 {{ $admin->name }}
                             </a>
                         </li>
