@@ -10,6 +10,13 @@ use App\Admin;
 class ManageAdminController extends Controller
 {
     //
+    function showAdminList(){
+        $admin_list = Admin::orderBy("id", "desc")->paginate(10);
+        return view("admin.admin_list", [
+            "admin_list" => $admin_list
+        ]);
+    }
+
     public function add()
     {
         return view('admin.admin_add');

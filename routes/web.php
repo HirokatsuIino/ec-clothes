@@ -55,11 +55,16 @@ Route::group(['middleware' => ['auth.admin']], function () {
     //ユーザー詳細
     Route::get('/admin/user/{id}', 'admin\ManageUserController@showUserDetail');
 
+    //管理者　ユーザー登録
     Route::get('/admin/add', 'admin\ManageUserController@add')->name('user_add');
     Route::post('/admin/add', 'admin\ManageUserController@create')->name('user_create');
 
+    //管理者　管理者登録
     Route::get('/admin/create', 'admin\ManageAdminController@add')->name('admin_add');
     Route::post('/admin/create', 'admin\ManageAdminController@create')->name('admin_create');
+
+    //管理者一覧
+    Route::get('/admin/admin_list', 'admin\ManageAdminController@showAdminList');
 
 });
 
