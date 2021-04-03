@@ -57,6 +57,10 @@ Route::group(['middleware' => ['auth.admin']], function () {
 
     Route::get('/admin/add', 'admin\ManageUserController@add')->name('user_add');
     Route::post('/admin/add', 'admin\ManageUserController@create')->name('user_create');
+
+    Route::get('/admin/create', 'admin\ManageAdminController@add')->name('admin_add');
+    Route::post('/admin/create', 'admin\ManageAdminController@create')->name('admin_create');
+
 });
 
 //管理側ログイン
