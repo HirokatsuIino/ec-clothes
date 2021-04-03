@@ -10,10 +10,20 @@ use App\Admin;
 class ManageAdminController extends Controller
 {
     //
-    public function showAdminList(){
-        $admin_list = Admin::orderBy("id", "desc")->paginate(10);
+    public function showAdminList(Request $request){
+        $keyword = $request->input('keyword');
+        $query = Admin::query();
+
+        if (!empty($keyword)) {
+            $query->where('name', 'LIKE', "%{$keyword}%");
+        }else{
+            $query->orderBy("id", "desc");
+        }
+        $admin_list = $query->paginate(10);
+
         return view("admin.admin_list", [
-            "admin_list" => $admin_list
+            "admin_list" => $admin_list,
+            "keyword" => $keyword,
         ]);
     }
 
