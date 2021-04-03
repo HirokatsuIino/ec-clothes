@@ -5,6 +5,12 @@
         <a class="navbar-brand" href="{{ url('admin') }}">
             管理ページ
         </a>
+        <a class="navbar-brand" href="{{ url('admin/admin_list') }}">
+            管理者一覧
+        </a>
+        <a class="navbar-brand" href="{{ url('admin/user_list') }}">
+            登録ユーザー一覧
+        </a>
         <form method="post" action="{{ url('admin/logout') }}">
             @csrf
             <input type="submit" class="btn btn-danger" value="ログアウト" />
