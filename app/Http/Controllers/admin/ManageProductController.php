@@ -9,6 +9,21 @@ use App\Product;
 class ManageProductController extends Controller
 {
     //
+    public function add()
+    {
+        return view('admin.product_add');
+    }
+
+    public function create(Request $request)
+    {
+        $product = new Product;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->save();
+        return redirect('/admin/product_list');
+    }
+
     public function showProductList(Request $request){
         $keyword = $request->input('keyword');
         $query = Product::query();
