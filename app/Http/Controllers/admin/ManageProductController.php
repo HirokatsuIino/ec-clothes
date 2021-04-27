@@ -16,10 +16,22 @@ class ManageProductController extends Controller
 
     public function create(Request $request)
     {
+        $request->validate([
+            'image' => 'required|file|image|mimes:png,jpeg'
+        ]);
+        $upload_image = $request->file('image');
+
+        $file_path = '';
+        if($upload_image) {
+            //アップロードされた画像を保存する
+            $file_path = $upload_image->storeAs('uploads/products', $upload_image->getClientOriginalName(), "public");
+        }
+
         $product = new Product;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->image = $file_path;
         $product->save();
         return redirect('/admin/product_list');
     }
