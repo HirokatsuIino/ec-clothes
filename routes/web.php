@@ -70,7 +70,8 @@ Route::group(['middleware' => ['auth.admin']], function () {
 
     //商品一覧
     Route::get('/admin/product_list', 'admin\ManageProductController@showProductList');
-
+    //商品詳細
+    Route::get('/admin/product_detail/{id}', 'admin\ManageProductController@showProductDetail');
     //商品登録
     Route::get('/admin/product_add', 'admin\ManageProductController@add')->name('product_add');
     Route::post('/admin/product_add', 'admin\ManageProductController@create')->name('product_create');

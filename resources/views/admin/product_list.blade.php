@@ -70,7 +70,7 @@
 {{--                            </table>--}}
                             <li class="list-group-item">
                                 <img style="width: 30px; height: 40px;" src="{{ asset($product->image) }}" class="card-img"/>
-                                <a href="{{ url('admin/product_list/' . $product->id) }}">
+                                <a href="{{ url('admin/product_detail/' . $product->id) }}">
                                     {{ $product->name }}
                                 </a>
                                 <br>

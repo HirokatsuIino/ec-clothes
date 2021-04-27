@@ -40,4 +40,9 @@ class ManageProductController extends Controller
             "keyword" => $keyword,
         ]);
     }
+
+    public function showProductDetail($id){
+        $product = Product::find($id);
+        return view("admin.product_detail", ["product" => $product]);
+    }
 }
